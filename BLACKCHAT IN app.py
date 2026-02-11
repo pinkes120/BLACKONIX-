@@ -1,40 +1,30 @@
-from flask import Flask, render_template, request, redirect, session, jsonify
-from flask_socketio import SocketIO, emit, join_room, leave_room
+from flask import Flask, render_template, request, redirect, session
+from flask_socketio import SocketIO, emit, join_room
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import uuid
 
+from config import Config   # Config imported here
+
+# ---------------------------------
+# App Setup
+# ---------------------------------
+
 app = Flask(__name__)
-app.secret_key = "blackchat_secret_key"
+app.config.from_object(Config)   # Config connected here
 
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode=app.config["SOCKETIO_ASYNC_MODE"])
 
-# -------------------------
-# In-Memory Storage (Temporary)
-# -------------------------
+# ---------------------------------
+# Temporary Storage (Later MongoDB)
+# ---------------------------------
 
-users = {}  
-# Structure:
-# users = {
-#   "username": {
-#       "password": hashed_password,
-#       "id": unique_id,
-#       "online": False
-#   }
-# }
+users = {}
+messages = []
 
-messages = []  
-# Structure:
-# {
-#   "sender": username,
-#   "receiver": username,
-#   "message": text,
-#   "timestamp": time
-# }
-
-# -------------------------
+# ---------------------------------
 # Routes
-# -------------------------
+# ---------------------------------
 
 @app.route("/")
 def home():
@@ -93,20 +83,14 @@ def logout():
     session.clear()
     return redirect("/")
 
-# -------------------------
+# ---------------------------------
 # Socket Events
-# -------------------------
-
-@socketio.on("connect")
-def handle_connect():
-    print("User connected")
-
+# ---------------------------------
 
 @socketio.on("join")
 def handle_join(data):
     username = data["username"]
     join_room(username)
-    emit("status", {"msg": f"{username} joined"}, broadcast=True)
 
 
 @socketio.on("private_message")
@@ -129,14 +113,9 @@ def handle_private_message(data):
     emit("receive_message", msg_data, room=receiver)
     emit("receive_message", msg_data, room=sender)
 
-
-@socketio.on("disconnect")
-def handle_disconnect():
-    print("User disconnected")
-
-# -------------------------
-# Run App
-# -------------------------
+# ---------------------------------
+# Run Server
+# ---------------------------------
 
 if __name__ == "__main__":
     socketio.run(app, debug=True)
