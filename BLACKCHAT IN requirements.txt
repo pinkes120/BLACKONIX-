@@ -1,0 +1,14 @@
+Flask==3.0.0
+Flask-SocketIO==5.3.6
+python-socketio==5.11.2
+Werkzeug==3.0.1
+eventlet==0.35.2
+
+# Future Database Support
+pymongo==4.6.1
+
+# Future JWT Authentication
+PyJWT==2.8.0
+
+# Password Hashing (already inside Werkzeug but safe for future)
+bcrypt==4.1.2
