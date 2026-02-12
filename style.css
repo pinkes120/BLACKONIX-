@@ -1,0 +1,183 @@
+/* ============================= */
+/* BLACKONIX Global Theme */
+/* ============================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #000000, #1c1c1c);
+    color: #ffffff;
+}
+
+/* ============================= */
+/* Navbar */
+/* ============================= */
+
+.navbar-blackonix {
+    background-color: #111;
+    padding: 15px 20px;
+    border-bottom: 1px solid #222;
+}
+
+.navbar-blackonix .brand {
+    color: #00ff99;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.navbar-blackonix .nav-link {
+    color: #ccc;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.navbar-blackonix .nav-link:hover {
+    color: #00ff99;
+}
+
+/* ============================= */
+/* Card Box (Login / Register) */
+/* ============================= */
+
+.auth-box {
+    background: #111;
+    padding: 35px;
+    border-radius: 15px;
+    max-width: 420px;
+    width: 100%;
+    margin: 60px auto;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+.auth-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.form-control {
+    background: #222;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+.form-control:focus {
+    background: #222;
+    color: #fff;
+    border-color: #00ff99;
+    box-shadow: none;
+}
+
+/* ============================= */
+/* Buttons */
+/* ============================= */
+
+.btn-blackonix {
+    background: #00ff99;
+    border: none;
+    font-weight: bold;
+    color: #000;
+}
+
+.btn-blackonix:hover {
+    background: #00cc77;
+    color: #000;
+}
+
+/* ============================= */
+/* Links */
+/* ============================= */
+
+a {
+    color: #00ff99;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ============================= */
+/* Chat Page */
+/* ============================= */
+
+.chat-header {
+    background: #111;
+    padding: 15px;
+    text-align: center;
+    color: #00ff99;
+    font-weight: bold;
+    border-bottom: 1px solid #222;
+}
+
+.chat-container {
+    height: 70vh;
+    overflow-y: auto;
+    padding: 20px;
+    background: #0d0d0d;
+}
+
+.message {
+    margin-bottom: 15px;
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.sent {
+    background: #00ff99;
+    color: #000;
+    margin-left: auto;
+    text-align: right;
+}
+
+.received {
+    background: #1c1c1c;
+    color: #fff;
+    margin-right: auto;
+}
+
+.chat-input-area {
+    background: #111;
+    padding: 15px;
+    border-top: 1px solid #222;
+}
+
+/* ============================= */
+/* Scrollbar */
+/* ============================= */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ff99;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+/* ============================= */
+/* Responsive */
+/* ============================= */
+
+@media (max-width: 768px) {
+    .auth-box {
+        margin: 30px 15px;
+    }
+
+    .chat-container {
+        height: 60vh;
+    }
+}
